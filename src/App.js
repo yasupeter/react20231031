@@ -1,27 +1,43 @@
 function MyComponent1() {
   return (
-    <div style={{ width: "100%" }}>
-      <img
-        style={{ width: "100%" }}
-        src="https://i.imgur.com/SuL4x4v.jpeg"
-        alt="경복궁"
-      />
-      ;
+    <div>
+      <h1>Hello Component</h1>
     </div>
+  );
+}
+
+function MyComponent2() {
+  return (
+    <>
+      {/*p>lorem5^ul>li*3>lorem1*/}
+      <p>Lorem ipsum dolor sit amet.</p>
+      <ul>
+        <li>Lorem.</li>
+        <li>Labore.</li>
+        <li>Quas?</li>
+      </ul>
+    </>
   );
 }
 
 function App() {
   return (
     <div>
-      <MyComponent1></MyComponent1>
-      <MyComponent1 />
       <MyComponent1 />
       {/*
-      <img src="https://i.imgur.com/SuL4x4v.jpeg" />
-      <img src="https://i.imgur.com/SuL4x4v.jpeg" />
-      <img src="https://i.imgur.com/SuL4x4v.jpeg" />
+      <div>
+        <h1>Hello Component</h1>
+      </div>
       */}
+      <MyComponent2 />
+      {/*
+        <p>lorem ipsum alkdjf alkdjf </p>
+        <ul>
+          <li>lorem</li>
+          <li>ipsum</li>
+          <li>dolor</li>
+        </ul>
+       */}
     </div>
   );
 }
