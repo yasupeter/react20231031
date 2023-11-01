@@ -1,20 +1,23 @@
+import {
+  MyBox,
+  MyContainer,
+  MyElem,
+  name,
+  address,
+  person,
+} from "./component/MyBox";
+
 function App() {
+  console.log("name", name);
+  console.log("address", address);
+  console.log("person", person);
+
   return (
     <>
-      <MyComp value="흥민" address="신촌" />
-      <MyComp value="강인" address="강남" />
+      <MyBox />
+      <MyElem />
+      <MyContainer />
     </>
-  );
-}
-
-// {value: "흥민", address: "신촌"}
-function MyComp({ value, address }) {
-  return (
-    <div>
-      <h1>
-        {value}는 {address}에 산다
-      </h1>
-    </div>
   );
 }
 
