@@ -1,21 +1,17 @@
-import {
-  MyBox,
-  MyContainer,
-  MyElem,
-  name,
-  address,
-  person,
-} from "./component/MyBox";
+// style 적용 방법
+// 보통 css 파일
+// css module 사용
+// chakraui css library
+
+import { MyComp } from "./component/MyComp";
+import { MyBox } from "./component/MyBox";
+import { MyContainer } from "./component/MyContainer";
 
 function App() {
-  console.log("name", name);
-  console.log("address", address);
-  console.log("person", person);
-
   return (
     <>
+      <MyComp />
       <MyBox />
-      <MyElem />
       <MyContainer />
     </>
   );
