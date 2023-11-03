@@ -1,27 +1,29 @@
-import { Button } from "@chakra-ui/react";
+import React from "react";
 
-function MyButton({ executeClick, children }) {
-  return <Button onClick={executeClick}>{children}</Button>;
-}
-
-// 두개의 버튼 만들기
-// 첫번째 버튼은 클릭하면 콘솔에 "hello"
-// 두번째 버튼은 클릭하면 콘솔에 "greeting"
-
-function App() {
-  function sayHello() {
-    console.log("hello");
+function App(props) {
+  function handleClick(e) {
+    // 브라우저가 해야하는 기본 기능을 취소함
+    e.preventDefault();
+    console.log("다른 일을 시킴");
   }
 
-  function sayGreeting() {
-    console.log("greeting");
+  function handleSubmit(e) {
+    // 기본 기능 취소
+    e.preventDefault();
+    console.log("다른일을 시킴");
   }
-
   return (
-    <>
-      <MyButton executeClick={sayHello}>헬로</MyButton>
-      <MyButton executeClick={sayGreeting}>그리팅</MyButton>
-    </>
+    <div>
+      <a href="https://www.naver.com" onClick={handleClick}>
+        네이버
+      </a>
+      <div>
+        <form action="https://search.daum.net/search" onSubmit={handleSubmit}>
+          <input type="text" name="q" />
+          <button>검색</button>
+        </form>
+      </div>
+    </div>
   );
 }
 
