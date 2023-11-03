@@ -1,24 +1,27 @@
-import React from "react";
 import { Button } from "@chakra-ui/react";
 
-function App(props) {
-  // 브라우저는 이벤트 핸들러 메소드에
-  // event 객체를 매개값으로 넣어줌
-  function handleClick(event) {
-    // console.log(event);
-    console.log(event.target);
-    // console.log(event.target.className);
-    // console.log(event.target.type);
+function MyButton({ executeClick, children }) {
+  return <Button onClick={executeClick}>{children}</Button>;
+}
+
+// 두개의 버튼 만들기
+// 첫번째 버튼은 클릭하면 콘솔에 "hello"
+// 두번째 버튼은 클릭하면 콘솔에 "greeting"
+
+function App() {
+  function sayHello() {
+    console.log("hello");
   }
+
+  function sayGreeting() {
+    console.log("greeting");
+  }
+
   return (
-    <div>
-      <Button colorScheme="orange" onClick={handleClick}>
-        button1
-      </Button>
-      <Button colorScheme="blue" onClick={handleClick}>
-        button2
-      </Button>
-    </div>
+    <>
+      <MyButton executeClick={sayHello}>헬로</MyButton>
+      <MyButton executeClick={sayGreeting}>그리팅</MyButton>
+    </>
   );
 }
 
