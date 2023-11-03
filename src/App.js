@@ -1,47 +1,24 @@
-function MyComponent1() {
-    return (
-        <div>
-            <h1>Hello Component</h1>
-        </div>
-    )
-}
-
-function MyComponent2() {
-    return (
-        <>
-            {/*p>lorem5^ul>li*3>lorem1*/}
-            <p>Lorem ipsum dolor sit amet.</p>
-            <ul>
-                <li>Lorem.</li>
-                <li>Labore.</li>
-                <li>Quas?</li>
-            </ul>
-        </>
-    );
-}
+import { Button, Center } from "@chakra-ui/react";
 
 function App() {
-    return (
-        <div>
-            <MyComponent1 />
-            {/*
-      <div>
-        <h1>Hello Component</h1>
-      </div>
-      */}
-            <MyComponent2 />
-            {/*
-        <p>lorem ipsum alkdjf alkdjf </p>
-        <ul>
-          <li>lorem</li>
-          <li>ipsum</li>
-          <li>dolor</li>
-        </ul>
-       */}
-        </div>
-    );
+  function handleOuterBoxClick() {
+    console.log("바깥 상자 클릭됨");
+  }
+  function handleInnerBoxClick() {
+    console.log("안쪽 상자 클릭됨");
+  }
+  function handleButtonClick() {
+    console.log("버튼 클릭됨");
+  }
+  return (
+    <>
+      <Center onClick={handleOuterBoxClick}>
+        <Center onClick={handleInnerBoxClick}>
+          <Button onClick={handleButtonClick}>button</Button>
+        </Center>
+      </Center>
+    </>
+  );
 }
-
-
 
 export default App;
