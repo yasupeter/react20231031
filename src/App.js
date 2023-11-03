@@ -1,33 +1,23 @@
 import React from "react";
 import { Button } from "@chakra-ui/react";
 
-function MyComp({ children, executeClick }) {
-  return <Button onClick={executeClick}>{children}</Button>;
-}
-
 function App(props) {
-  function func1() {
-    console.log("func1 실행");
+  // 브라우저는 이벤트 핸들러 메소드에
+  // event 객체를 매개값으로 넣어줌
+  function handleClick(event) {
+    // console.log(event);
+    console.log(event.target);
+    // console.log(event.target.className);
+    // console.log(event.target.type);
   }
-
-  let func2 = () => {
-    console.log("arrow function 실행 111");
-  };
-
   return (
     <div>
-      <MyComp executeClick={func1}>Button1</MyComp>
-      <MyComp executeClick={func2}>Button2</MyComp>
-      <MyComp
-        executeClick={() => {
-          console.log("arrow function 실행 222");
-        }}
-      >
-        Button3
-      </MyComp>
-      <MyComp executeClick={() => console.log("arrow function 실행333")}>
-        Button4
-      </MyComp>
+      <Button colorScheme="orange" onClick={handleClick}>
+        button1
+      </Button>
+      <Button colorScheme="blue" onClick={handleClick}>
+        button2
+      </Button>
     </div>
   );
 }
