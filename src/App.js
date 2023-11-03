@@ -1,47 +1,15 @@
-function MyComponent1() {
-    return (
-        <div>
-            <h1>Hello Component</h1>
-        </div>
-    )
-}
-
-function MyComponent2() {
-    return (
-        <>
-            {/*p>lorem5^ul>li*3>lorem1*/}
-            <p>Lorem ipsum dolor sit amet.</p>
-            <ul>
-                <li>Lorem.</li>
-                <li>Labore.</li>
-                <li>Quas?</li>
-            </ul>
-        </>
-    );
-}
-
 function App() {
-    return (
-        <div>
-            <MyComponent1 />
-            {/*
-      <div>
-        <h1>Hello Component</h1>
-      </div>
-      */}
-            <MyComponent2 />
-            {/*
-        <p>lorem ipsum alkdjf alkdjf </p>
-        <ul>
-          <li>lorem</li>
-          <li>ipsum</li>
-          <li>dolor</li>
-        </ul>
-       */}
-        </div>
-    );
+  return (
+    <>
+      <MyLink to="https://www.naver.com">naver 로</MyLink>
+      <MyLink to="https://www.daum.net">daum 으로</MyLink>
+      {/*
+    <a href="https://www.naver.com">naver 로</a>
+    <a href="https://www.daum.net">daum 으로</a>
+
+    */}
+    </>
+  );
 }
-
-
 
 export default App;
