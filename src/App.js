@@ -1,47 +1,28 @@
-function MyComponent1() {
-    return (
-        <div>
-            <h1>Hello Component</h1>
-        </div>
-    )
+import { Button } from "@chakra-ui/react";
+
+function MyButton({ executeClick, children }) {
+  return <Button onClick={executeClick}>{children}</Button>;
 }
 
-function MyComponent2() {
-    return (
-        <>
-            {/*p>lorem5^ul>li*3>lorem1*/}
-            <p>Lorem ipsum dolor sit amet.</p>
-            <ul>
-                <li>Lorem.</li>
-                <li>Labore.</li>
-                <li>Quas?</li>
-            </ul>
-        </>
-    );
-}
+// 두개의 버튼 만들기
+// 첫번째 버튼은 클릭하면 콘솔에 "hello"
+// 두번째 버튼은 클릭하면 콘솔에 "greeting"
 
 function App() {
-    return (
-        <div>
-            <MyComponent1 />
-            {/*
-      <div>
-        <h1>Hello Component</h1>
-      </div>
-      */}
-            <MyComponent2 />
-            {/*
-        <p>lorem ipsum alkdjf alkdjf </p>
-        <ul>
-          <li>lorem</li>
-          <li>ipsum</li>
-          <li>dolor</li>
-        </ul>
-       */}
-        </div>
-    );
+  function sayHello() {
+    console.log("hello");
+  }
+
+  function sayGreeting() {
+    console.log("greeting");
+  }
+
+  return (
+    <>
+      <MyButton executeClick={sayHello}>헬로</MyButton>
+      <MyButton executeClick={sayGreeting}>그리팅</MyButton>
+    </>
+  );
 }
-
-
 
 export default App;
