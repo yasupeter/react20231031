@@ -1,28 +1,15 @@
-import { Card, CardBody } from "@chakra-ui/react";
+function App() {
+  return (
+    <>
+      <MyLink to="https://www.naver.com">naver 로</MyLink>
+      <MyLink to="https://www.daum.net">daum 으로</MyLink>
+      {/*
+    <a href="https://www.naver.com">naver 로</a>
+    <a href="https://www.daum.net">daum 으로</a>
 
-function MyBox({ color, bg, children }) {
-    return (
-        <>
-            <Card color={color} bg={bg}>
-                <CardBody>{children}</CardBody>
-            </Card>
-        </>
-    );
-}
-function App(props) {
-    return (
-        <div>
-            <MyBox color="teal" bg="gray">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias
-                architecto blanditiis commodi delectus eligendi fuga harum impedit
-                maxime, necessitatibus nostrum odit, pariatur praesentium quae quaerat
-                quas qui veniam? Dolorem, in.
-            </MyBox>
-            <MyBox color="blue" bg="pink">
-                HELLO WORLD
-            </MyBox>
-        </div>
-    );
+    */}
+    </>
+  );
 }
 
 export default App;
