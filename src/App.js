@@ -29,17 +29,17 @@ function App(props) {
   function handleSubmit() {
     setSubmitting(true);
     /*
-        axios
-          .post("/adduser", {
-            name,
-            email,
-            password,
-          })
-          .then((response) => console.log("성공할 때 해야하는일"))
-          .catch((error) => console.log("실패할 때 해야하는 일"))
-          .finally(() => console.log("꼭 해야하는 일"));
+    axios
+      .post("/adduser", {
+        name,
+        email,
+        password,
+      })
+      .then((response) => console.log("성공할 때 해야하는일"))
+      .catch((error) => console.log("실패할 때 해야하는 일"))
+      .finally(() => console.log("꼭 해야하는 일"));
 
-         */
+     */
   }
 
   return (
