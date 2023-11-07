@@ -1,20 +1,42 @@
-import React, { useState } from "react";
-import { Button } from "@chakra-ui/react";
+import React from "react";
+import { useImmer } from "use-immer";
+import { Box, Button, ListItem, UnorderedList } from "@chakra-ui/react";
 
+let nextId = 1;
 function App(props) {
-  const [text, setText] = useState("hello");
+  const [items, updateItems] = useImmer([]);
 
-  console.log(text);
+  function handleButtonClick(todo) {
+    updateItems((draft) => {
+      draft.push({ id: nextId++, done: false, text: todo });
+    });
+  }
 
-  function handleButtonClick() {
-    // text 라는 state 값 변경
-    setText("greeting");
+  function handleDoneButtonClick(id) {
+    console.log(id);
   }
 
   return (
     <div>
-      <Button onClick={handleButtonClick}>상태 변경!</Button>
-      <p>{text}</p>
+      <Button onClick={() => handleButtonClick("자바공부")}>자바공부</Button>
+      <Button onClick={() => handleButtonClick("점심먹기")}>점심먹기</Button>
+      <Button onClick={() => handleButtonClick("잠자기")}>잠자기</Button>
+
+      <Box>
+        <UnorderedList>
+          {items.map((item) => (
+            <ListItem
+              key={item.id}
+              textDecoration={item.done ? "line-through" : "none"}
+            >
+              {item.text}
+              <Button onClick={() => handleDoneButtonClick(item.id)}>
+                완료
+              </Button>
+            </ListItem>
+          ))}
+        </UnorderedList>
+      </Box>
     </div>
   );
 }
