@@ -1,29 +1,42 @@
-import React, { useState } from "react";
-import { Button, Text } from "@chakra-ui/react";
+import React from "react";
+import { useImmer } from "use-immer";
+import { Box, Button, ListItem, UnorderedList } from "@chakra-ui/react";
 
-function ChildComp({ onClick }) {
-  return <Button onClick={onClick}>클릭!!!</Button>;
-}
-
-function SomeComp({ onClick }) {
-  return <ChildComp onClick={onClick} />;
-}
-
-function OtherChildComp({ message }) {
-  return <Text>{message}</Text>;
-}
-
-function OtherComp({ message }) {
-  return <OtherChildComp message={message} />;
-}
-
+let nextId = 1;
 function App(props) {
-  const [message, setMessage] = useState("원래 메세지!@!@!@!@");
+  const [items, updateItems] = useImmer([]);
+
+  function handleButtonClick(todo) {
+    updateItems((draft) => {
+      draft.push({ id: nextId++, done: false, text: todo });
+    });
+  }
+
+  function handleDoneButtonClick(id) {
+    console.log(id);
+  }
 
   return (
     <div>
-      <SomeComp onClick={() => setMessage("다른 메시지!!!!")} />
-      <OtherComp message={message} />
+      <Button onClick={() => handleButtonClick("자바공부")}>자바공부</Button>
+      <Button onClick={() => handleButtonClick("점심먹기")}>점심먹기</Button>
+      <Button onClick={() => handleButtonClick("잠자기")}>잠자기</Button>
+
+      <Box>
+        <UnorderedList>
+          {items.map((item) => (
+            <ListItem
+              key={item.id}
+              textDecoration={item.done ? "line-through" : "none"}
+            >
+              {item.text}
+              <Button onClick={() => handleDoneButtonClick(item.id)}>
+                완료
+              </Button>
+            </ListItem>
+          ))}
+        </UnorderedList>
+      </Box>
     </div>
   );
 }
