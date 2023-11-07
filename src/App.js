@@ -1,41 +1,52 @@
 import React, { useState } from "react";
-import { Box, Button, ListItem, UnorderedList } from "@chakra-ui/react";
+import { Input, Text } from "@chakra-ui/react";
+import { useImmer } from "use-immer";
 
 function App(props) {
-  const [foods, setFoods] = useState([]);
+  const [person, setPerson] = useState({ name: "son", city: "seoul" });
+  const [user, updateUser] = useImmer({ name: "lee", city: "jeju" });
 
-  function handleButtonClick(food) {
-    setFoods([...foods, food]);
+  function handleNameChange(e) {
+    const nextPerson = { ...person };
+    nextPerson.name = e.target.value;
+
+    setPerson(nextPerson);
   }
 
-  function handleRemoveButtonClick(index) {
-    // console.log(index + "번 째 아이템 지우기");
-    // const nextFoods = [...foods];
-    // nextFoods.splice(index, 1);
+  function handleCityChange(e) {
+    const nextPerson = { ...person };
+    nextPerson.city = e.target.value;
 
-    // const nextFoods = foods.filter((item, i) => i != index);
-    // setFoods(nextFoods);
+    setPerson(nextPerson);
+  }
 
-    setFoods(foods.filter((item, i) => i != index));
+  function handleUserNameChange(e) {
+    updateUser((draft) => {
+      draft.name = e.target.value;
+    });
+  }
+
+  function handleUserCityChange(e) {
+    updateUser((draft) => {
+      draft.city = e.target.value;
+    });
   }
 
   return (
     <div>
-      <Button onClick={() => handleButtonClick("커피")}>커피</Button>
-      <Button onClick={() => handleButtonClick("케잌")}>케잌</Button>
-      <Button onClick={() => handleButtonClick("아이스")}>아이스</Button>
-      <Box>
-        <UnorderedList>
-          {foods.map((item, index) => (
-            <ListItem key={index}>
-              {item}{" "}
-              <Button onClick={() => handleRemoveButtonClick(index)}>
-                지우기
-              </Button>
-            </ListItem>
-          ))}
-        </UnorderedList>
-      </Box>
+      <Input value={person.name} onChange={handleNameChange} />
+      <Input value={person.city} onChange={handleCityChange} />
+      <Text>
+        {person.name}은 {person.city}에 삽니다.
+      </Text>
+
+      <hr />
+
+      <Input value={user.name} onChange={handleUserNameChange} />
+      <Input value={user.city} onChange={handleUserCityChange} />
+      <Text>
+        {user.name}은 {user.city}에 삽니다.
+      </Text>
     </div>
   );
 }
