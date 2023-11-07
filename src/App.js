@@ -1,43 +1,44 @@
-import React, { useState } from "react";
+import React from "react";
+import { useImmer } from "use-immer";
 import { Box, Button, ListItem, UnorderedList } from "@chakra-ui/react";
 
+let nextId = 1;
 function App(props) {
-    const [foods, setFoods] = useState([]);
+  const [items, updateItems] = useImmer([]);
 
-    function handleButtonClick(food) {
-        setFoods([...foods, food]);
-    }
+  function handleButtonClick(todo) {
+    updateItems((draft) => {
+      draft.push({ id: nextId++, done: false, text: todo });
+    });
+  }
 
-    function handleRemoveButtonClick(index) {
-        // console.log(index + "번 째 아이템 지우기");
-        // const nextFoods = [...foods];
-        // nextFoods.splice(index, 1);
+  function handleDoneButtonClick(id) {
+    console.log(id);
+  }
 
-        // const nextFoods = foods.filter((item, i) => i != index);
-        // setFoods(nextFoods);
+  return (
+    <div>
+      <Button onClick={() => handleButtonClick("자바공부")}>자바공부</Button>
+      <Button onClick={() => handleButtonClick("점심먹기")}>점심먹기</Button>
+      <Button onClick={() => handleButtonClick("잠자기")}>잠자기</Button>
 
-        setFoods(foods.filter((item, i) => i != index));
-    }
-
-    return (
-        <div>
-            <Button onClick={() => handleButtonClick("커피")}>커피</Button>
-            <Button onClick={() => handleButtonClick("케잌")}>케잌</Button>
-            <Button onClick={() => handleButtonClick("아이스")}>아이스</Button>
-            <Box>
-                <UnorderedList>
-                    {foods.map((item, index) => (
-                        <ListItem key={index}>
-                            {item}{" "}
-                            <Button onClick={() => handleRemoveButtonClick(index)}>
-                                지우기
-                            </Button>
-                        </ListItem>
-                    ))}
-                </UnorderedList>
-            </Box>
-        </div>
-    );
+      <Box>
+        <UnorderedList>
+          {items.map((item) => (
+            <ListItem
+              key={item.id}
+              textDecoration={item.done ? "line-through" : "none"}
+            >
+              {item.text}
+              <Button onClick={() => handleDoneButtonClick(item.id)}>
+                완료
+              </Button>
+            </ListItem>
+          ))}
+        </UnorderedList>
+      </Box>
+    </div>
+  );
 }
 
 export default App;
